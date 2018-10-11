@@ -12,7 +12,7 @@ RUN pip install google-api-python-client==1.6.4 mrjob==0.5.11
 ENV SQOOP_SERVER_EXTRA_LIB /var/lib/sqoop2
 ENV PATH $PATH:$SQOOP_SERVER_EXTRA_LIB/bin
 
-ENV HADOOP_COMMON_HOME /usr/local/hadoop/share/hadoop/common
+ENV HADOOP_COMMON_HOME /usr/local/hadoop
 ENV HADOOP_HDFS_HOME /usr/local/hadoop/share/hadoop/hdfs
 ENV HADOOP_MAPRED_HOME /usr/local/hadoop/share/hadoop/mapreduce
 ENV HADOOP_YARN_HOME /usr/local/hadoop/share/hadoop/yarn
