@@ -96,8 +96,7 @@ RUN wget http://www.eu.apache.org/dist/sqoop/1.99.7/sqoop-1.99.7-bin-hadoop200.t
     ln -s /var/lib/sqoop-1.99.7-bin-hadoop200 $SQOOP_SERVER_EXTRA_LIB; \
     rm sqoop-1.99.7-bin-hadoop200.tar.gz ; \
     sed -i 's/\/etc\/hadoop\/conf\//\/usr\/local\/hadoop\/etc\/hadoop\//g' $SQOOP_SERVER_EXTRA_LIB/conf/sqoop.properties ; \
-    sed -i 's/allowed.system.users=##/allowed.system.users=sqoop2##/g' $HADOOP_CONF_DIR/container-executor.cfg &&\
-    sed -i "s/<\/property>/<\/property><property> <name>hadoop.proxyuser.sqoop2.hosts<\/name><value>*<\/value><\/property><property><name>hadoop.proxyuser.sqoop2.groups<\/name><value>*<\/value><\/property>/g" $HADOOP_CONF_DIR/core-site.xml;
+    sed -i 's/allowed.system.users=##/allowed.system.users=root##/g' $HADOOP_CONF_DIR/container-executor.cfg 
 
 #Instalando conector mysql para o Sqoop
 RUN wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.47.tar.gz ; \
