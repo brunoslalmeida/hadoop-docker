@@ -5,20 +5,24 @@ Este respoitório foi baseado (neste repositório)[https://github.com/sequenceiq
 [![DockerStars](https://img.shields.io/docker/stars/aquelatecnologia/hadoop.svg)](https://registry.hub.docker.com/u/aquelatecnologia/hadoop/)
 
 
-# Criando a imagem
-
-Para criar a sua imagem a partir do Dockerfile, basta executar o seguinte comando 
+# Compilar localmente
+Para gerar a imagem localmente sem precisar baixa-la do servidor basta executar o comando:
 
 ```
-docker build  -t aquelatecnologia/hadoop:2.9.1 .
+docker build -t aquelatecnologia/hadoop:2.9.1 .
 ```
 
-# Iniciar um container
-
-Para iniciar a imagem que você criou ou fez o pull, basta usar o seguinte comando:
+Feito isso pode-se testar usando o comando
 
 ```
 docker run -it aquelatecnologia/hadoop:2.9.1 /etc/bootstrap.sh -bash
+```
+
+# Usando do Docker-Compose
+Para usar o docker-compose basta executar o seguinte comando:
+
+```
+docker-compose up
 ```
 
 ## Testando
