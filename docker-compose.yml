@@ -8,4 +8,4 @@ services:
       - 8088:8088
     container_name: hadoop
     hostname: hadoop
-    command: sh /etc/bootstrap.sh
+    command:  /etc/bootstrap.sh -bash
