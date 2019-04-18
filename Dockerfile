@@ -66,6 +66,14 @@ ADD /etc/bootstrap.sh /etc/bootstrap.sh
 RUN chmod 700 /etc/bootstrap.sh
 RUN chown root:root /etc/bootstrap.sh
 
+RUN mkdir -p /sample/java; \
+    mkdir -p /sample/python; \
+    cd /sample/java; \
+    wget https://raw.githubusercontent.com/aquelatecnologia/desafio-hadoop/master/exemplos/wordcount/java/WordCount.java; \
+    cd /sample/python; \
+    wget https://raw.githubusercontent.com/aquelatecnologia/desafio-hadoop/master/exemplos/wordcount/python/wordcount.py;
+
+
 CMD ["/etc/bootstrap.sh", "-d" ]
 
 EXPOSE 50010 50020 50070 50075 50090 19888 8030 8031 8032 
