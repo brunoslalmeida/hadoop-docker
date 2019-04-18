@@ -5,9 +5,6 @@ FROM ubuntu:xenial
 LABEL MAINTAINER Prof. Bruno Almeida <bruno@aquelatecnologia.com.br> (https://aquelatecnologia.com.br)
 LABEL Version: 1.0
 
-#http://sqoop.apache.org/docs/1.99.7/admin/Installation.html
-ENV SQOOP_SERVER_EXTRA_LIB /var/lib/sqoop2
-
 ENV HADOOP_HOME /usr/local/hadoop
 ENV HADOOP_PREFIX $HADOOP_HOME
 ENV YARN_CONF_DIR $HADOOP_PREFIX/etc/hadoop
@@ -64,20 +61,6 @@ RUN ls -la $HADOOP_PREFIX/etc/hadoop/*-env.sh
 RUN sed  -i "/^[^#]*UsePAM/ s/.*/#&/"  /etc/ssh/sshd_config
 RUN echo "UsePAM no" >> /etc/ssh/sshd_config
 RUN echo "Port 2122" >> /etc/ssh/sshd_config
-
-RUN wget http://www.eu.apache.org/dist/sqoop/1.99.7/sqoop-1.99.7-bin-hadoop200.tar.gz ; \
-    tar -zxf sqoop-1.99.7-bin-hadoop200.tar.gz ; \
-    mv sqoop-1.99.7-bin-hadoop200 /var/lib ; \
-    ln -s /var/lib/sqoop-1.99.7-bin-hadoop200 $SQOOP_SERVER_EXTRA_LIB; \
-    rm sqoop-1.99.7-bin-hadoop200.tar.gz ; 
-
-RUN sed -i 's/\/etc\/hadoop\/conf\//\/usr\/local\/hadoop\/etc\/hadoop\//g' $SQOOP_SERVER_EXTRA_LIB/conf/sqoop.properties ; \
-    sed -i 's/allowed.system.users=##/allowed.system.users=root##/g' $HADOOP_CONF_DIR/container-executor.cfg 
-
-RUN wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.47.tar.gz ; \
-    tar -zxf mysql-connector-java-5.1.47.tar.gz ; \
-    cp mysql-connector-java-5.1.47/mysql-connector-java-5.1.47-bin.jar $SQOOP_SERVER_EXTRA_LIB ; \
-    rm -rf mysql-connector-java-5.1.47*;
 
 ADD /etc/bootstrap.sh /etc/bootstrap.sh
 RUN chmod 700 /etc/bootstrap.sh
