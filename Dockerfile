@@ -17,14 +17,14 @@ ARG HADOOP_VERSION=2.9.2
 
 ENV PATH $PATH:$HADOOP_PREFIX/bin:$SQOOP_SERVER_EXTRA_LIB/bin
 
-RUN apt-get update 1> /dev/null
+RUN apt-get update
 
 RUN apt-get -y install \
         curl tar openssh-server \
         openssh-client python-pip rsync \
-        wget nano vim default-jdk 1> /dev/null
+        wget nano vim default-jdk
 
-RUN pip install google-api-python-client==1.6.4 mrjob==0.5.11 1> /dev/null;
+RUN pip install google-api-python-client==1.6.4 mrjob==0.5.11;
 
 RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key; \
     ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key; \
@@ -68,11 +68,12 @@ RUN chown root:root /etc/bootstrap.sh
 
 RUN mkdir -p /sample/java; \
     mkdir -p /sample/python; \
+    mkdir -p /sample/loremipsum; \
     cd /sample/java; \
     wget https://raw.githubusercontent.com/aquelatecnologia/desafio-hadoop/master/exemplos/wordcount/java/WordCount.java; \
     cd /sample/python; \
     wget https://raw.githubusercontent.com/aquelatecnologia/desafio-hadoop/master/exemplos/wordcount/python/wordcount.py;
-
+ADD /lorem-ipsum.txt /sample/loremipsum/lorem-ipsum.txt
 
 CMD ["/etc/bootstrap.sh", "-d" ]
 
